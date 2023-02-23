@@ -35,17 +35,17 @@ namespace pet_hotel.Models
 
         [Required]
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public PetBreedType breedType { get; set; }
+        public PetBreedType breed { get; set; }
 
         [Required]
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public PetColorType colorType { get; set; }
+        public PetColorType color { get; set; }
 
         public DateTime? checkedInAt { get; set; }
 
         [Required]
-        [ForeignKey("ownedBy")]
-        public int ownedById { get; set; }
-        public PetOwner ownedBy { get; set; }
+        [ForeignKey("petOwner")]
+        public int petOwnerid { get; set; }
+        public PetOwner petOwner { get; set; }
     }
 }
