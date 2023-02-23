@@ -26,5 +26,8 @@ namespace pet_hotel.Models
 
         //activating PetOwner
         public DbSet<PetOwner> PetOwners { get; set; }
+
+        //activate Pets
+        public DbSet<Pet> Pets { get; set; }
     }
 }
