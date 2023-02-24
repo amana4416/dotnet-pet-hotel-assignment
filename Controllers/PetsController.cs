@@ -49,7 +49,7 @@ namespace pet_hotel.Controllers
             _context.SaveChanges();;
         }
 
-        //PUT
+        //PUT for checking in
         [HttpPut("{id}/checkin")]
        public ActionResult<Pet> CheckinPet(int id)
         {
@@ -64,8 +64,29 @@ namespace pet_hotel.Controllers
                 return newPet;
             }
             else
-
+            {
                 return BadRequest();
+            }
+        }
+
+        //PUT for checking out
+        [HttpPut("{id}/checkout")]
+        public ActionResult<Pet> CheckoutPet(int id)
+        {
+            Pet newPet = _context.Pets.Find(id);
+
+            if (newPet.checkedInAt is null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                newPet.checkedInAt = null;
+
+                _context.SaveChanges();
+                
+                return newPet;
+            }
         }
 
         // [HttpGet]
