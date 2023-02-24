@@ -49,7 +49,24 @@ namespace pet_hotel.Controllers
             _context.SaveChanges();;
         }
 
+        //PUT
+        [HttpPut("{id}/checkin")]
+       public ActionResult<Pet> CheckinPet(int id)
+        {
+            Pet newPet = _context.Pets.Find(id);
 
+            if (newPet.checkedInAt is null)
+            {
+                newPet.checkedInAt = DateTime.Now;
+
+                _context.SaveChanges();
+
+                return newPet;
+            }
+            else
+
+                return BadRequest();
+        }
 
         // [HttpGet]
         // [Route("test")]
