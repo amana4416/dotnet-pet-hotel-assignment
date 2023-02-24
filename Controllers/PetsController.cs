@@ -53,15 +53,15 @@ namespace pet_hotel.Controllers
         [HttpPut("{id}/checkin")]
        public ActionResult<Pet> CheckinPet(int id)
         {
-            Pet newPet = _context.Pets.Find(id);
+            Pet pet = _context.Pets.Find(id);
 
-            if (newPet.checkedInAt is null)
+            if (pet.checkedInAt == null)
             {
-                newPet.checkedInAt = DateTime.Now;
+                pet.checkedInAt = DateTime.Now;
 
                 _context.SaveChanges();
 
-                return newPet;
+                return pet;
             }
             else
             {
@@ -73,19 +73,19 @@ namespace pet_hotel.Controllers
         [HttpPut("{id}/checkout")]
         public ActionResult<Pet> CheckoutPet(int id)
         {
-            Pet newPet = _context.Pets.Find(id);
+            Pet pet = _context.Pets.Find(id);
 
-            if (newPet.checkedInAt is null)
+            if (pet.checkedInAt == null)
             {
                 return BadRequest();
             }
             else
             {
-                newPet.checkedInAt = null;
+                pet.checkedInAt = null;
 
                 _context.SaveChanges();
-                
-                return newPet;
+
+                return pet;
             }
         }
 
